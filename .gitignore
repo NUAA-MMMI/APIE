@@ -1,0 +1,8 @@
+data/
+logs/
+output/
+
+*.pyc
+*.log
+
+debug.ipynb
