@@ -4,9 +4,9 @@
 # %%
 import json
 
-with open('data/Others/entity/conll03/test.json', 'r') as f:
+with open('data/origin/conll03/test.json', 'r') as f:
     dataList = [json.loads(line) for line in f.readlines()]
-with open('data/Act-UIE/conll2003/test.json', 'w') as f:
+with open('data/APIE/conll2003/test.json', 'w') as f:
     for item in dataList:
         meta = {
             "text": item['text'],
@@ -18,9 +18,9 @@ print(f"Converted {len(dataList)} items to Act-UIE format.")
 # %%
 import json
 
-with open('data/Others/entity/mrc_ace04/test.json', 'r') as f:
+with open('data/origin/mrc_ace04/test.json', 'r') as f:
     dataList = [json.loads(line) for line in f.readlines()]
-with open('data/Act-UIE/ace04NER/test.json', 'w') as f:
+with open('data/APIE/ace04NER/test.json', 'w') as f:
     for item in dataList:
         meta = {
             "text": item['text'],
@@ -35,9 +35,9 @@ print(f"Converted {len(dataList)} items to Act-UIE format.")
 # %%
 import json
 
-with open('data/Others/relation/conll04/test.json', 'r') as f:
+with open('data/origin/conll04/test.json', 'r') as f:
     dataList = [json.loads(line) for line in f.readlines()]
-with open('data/Act-UIE/conll2004/test.json', 'w') as f:
+with open('data/APIE/conll2004/test.json', 'w') as f:
     for item in dataList:
         meta = {
             "text": item['text'],
@@ -56,8 +56,8 @@ print(f"Converted {len(dataList)} items to Act-UIE format.")
 import json
 import os
 
-inputDir = 'data/Others/relation/scierc'
-outputDir = 'data/Act-UIE/scierc'
+inputDir = 'data/origin/relation/scierc'
+outputDir = 'data/APIE/scierc'
 
 if not os.path.exists(outputDir):
     os.makedirs(outputDir)

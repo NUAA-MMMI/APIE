@@ -23,6 +23,113 @@ This repository provides the official implementation of the following paper:
 
 ## Overview
 
-<p align="center"><img src="document\apie-2main-v6.drawio.drawio.png" alt="teaser" width="500px" /></p>
+<p align="center"><img src="document\apie-2main-v6.drawio.drawio.png" alt="teaser"/></p>
 
 Large Language Models (LLMs) show remarkable potential for few-shot information extraction (IE), yet their performance is highly sensitive to the choice of in-context examples. Conventional selection strategies often fail to provide informative guidance, as they overlook a key source of model fallibility: confusion stemming not just from semantic content, but also from the generation of well-structured formats required by IE tasks. To address this, we introduce Active Prompting for Information Extraction (APIE), a novel active prompting framework guided by a principle we term introspective confusion. Our method empowers an LLM to assess its own confusion through a dual-component uncertainty metric that uniquely quantifies both Format Uncertainty (difficulty in generating correct syntax) and Content Uncertainty (inconsistency in extracted semantics). By ranking unlabeled data with this comprehensive score, our framework actively selects the most challenging and informative samples to serve as few-shot exemplars. Extensive experiments on four benchmarks show that our approach consistently outperforms strong baselines, yielding significant improvements in both extraction accuracy and robustness. Our work highlights the critical importance of a fine-grained, dual-level view of model uncertainty when it comes to building effective and reliable structured generation systems.
+
+## Getting Started
+
+### Installation
+
+- Clone this repo:
+
+  ```
+  git clone https://github.com/NUAA-MMMI/APIE
+  cd APIE
+  ```
+
+- Python Packages:
+
+  ```
+  conda create -n apie python=3.8
+  pip install -r requirements.txt
+  ```
+### Datasets of extraction tasks
+
+#### Create your datasets and its format
+
+  Design the output format you desire for the dataset like this:
+
+  ```
+  schema.json
+  {
+    "tasks":["NER"],
+    "languages":"en",
+    "classes" : [["miscellaneous", "organization", "person", "location"]],
+
+    "ZSL" : {
+        "entities" : [{"type" : " ", "text" : " "}]
+    },
+    
+    "schema": {
+        "type": "object",
+        "properties": {
+            "entities": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "type": {"type": "string"},
+                        "text": {"type": "string"}
+                    },
+                    "required": ["type", "text"]
+                }
+            }
+        },
+        "required": ["entities"]
+    }
+  }
+  ```
+
+  A single sample is as follows
+
+  ```
+  {
+    "text": "New York 103 MIAMI 85", 
+    "standard": 
+    {
+      "entities": [{"type": "organization", "text": "New York"}, {"type": "organization", "text": "MIAMI"}]
+    }
+  }
+  ```
+
+#### Existing datasets
+  You can get datasets from [UIE](https://github.com/universal-ie/UIE).
+
+  Place the dataset in the "data/origin" folder.
+  
+  After that, you can transform the UIE data to our format:
+
+  ```
+  python dataProcessing.py
+  ```
+  Details see [dataProcessing.py](dataProcessing.py)
+
+### Language model preparation
+We use openai format client(local models or cloud models), you can change client in [adapter.py](models/adaptor.py)
+### Uncertainty estimate
+  Perform uncertainty assessment on the model
+
+  ```
+  python uncertainty.py
+  ```
+
+  Details see [uncertainty.py](uncertainty.py)
+
+### Inference
+  Use the data that has undergone uncertainty assessment as cues for reasoning.
+
+  ```
+  python interfence.py
+  ```
+
+  Details see [inference.py](inference.py)
+
+### Evaluation
+  The result of the evaluation and reasoning
+
+  ```
+  python evaluation.py
+  ```
+
+  Details see [evaluation.py](evaluation.py)
