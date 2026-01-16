@@ -80,8 +80,9 @@ Large Language Models (LLMs) show remarkable potential for few-shot information 
     }
   }
   ```
+  "classes" refer to the types of entities or categories. "schema" is used to verify whether the format is correct,details see [jsonschema](https://pypi.org/project/jsonschema/)
 
-  A single sample is as follows
+  A simple piece of data under the aforementioned verification:
 
   ```
   {
