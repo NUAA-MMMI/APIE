@@ -1,12 +1,12 @@
 # %% [markdown]
 # # Entity 数据准备
 
-# %%
+# %%W
 import json
 
-with open('data/origin/conll03/test.json', 'r') as f:
+with open('data/origin/CoNLL03/test.json', 'r') as f:
     dataList = [json.loads(line) for line in f.readlines()]
-with open('data/APIE/conll2003/test.json', 'w') as f:
+with open('data/APIE/CoNLL03/test.json', 'w') as f:
     for item in dataList:
         meta = {
             "text": item['text'],

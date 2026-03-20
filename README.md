@@ -1,7 +1,7 @@
 # APIE
 
 <p align="center">
-  <a href="https://ojs.aaai.org/index.php/AAAI/article/view/40796">📘AAAI</a> 
+  <a href="https://ojs.aaai.org/index.php/AAAI/article/view/40796">📘AAAI</a>
   <a href="https://arxiv.org/abs/2508.10036">📄arXiv</a> 
 </p>
 

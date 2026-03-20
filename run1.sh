@@ -1,10 +1,12 @@
 #!/bin/bash
 
-methods=("finalActUIE")  # Example method, modify as needed
-datasets=("conll2004") # ace04NER conll2003 conll2004 SciERC
-models=("deepseek-r1:14b") # gemma3:14b
+# This script is used to run the entire pipeline of inference and evaluation for the specified datasets, models, and methods. It first calculates the uncertainty of the model's predictions using "uncertainty.py" and then runs the inference and evaluation using "inference.py" and "evaluation.py".
 
-home="/home/zd/work/Act-UIE"
+methods=("finalActUIE")  # Example method, modify as needed
+datasets=("CoNLL03") # ace04NER conll2003 conll2004 SciERC
+models=("deepseek-chat") # gemma3:14b
+
+home="/home/zd/work/APIE"
 
 today=$(date "+%m-%d-%H")
 client="ollama"  # Example client, modify as needed
@@ -24,15 +26,15 @@ for dataset in $datasets; do
 
             echo "Running Inference: $dataset with $model using $method"
             python inference.py \
-                --inputFile $home/data/Act-UIE/$dataset/test.json \
-                --schema $home/data/Act-UIE/$dataset/schema.json \
+                --inputFile $home/data/APIE/$dataset/test.json \
+                --schema $home/data/APIE/$dataset/schema.json \
                 --outputFile $home/output/$dataset/$model/$method-$today.json \
                 --model $model \
                 --client $client \
                 --pollSize -1 \
                 --shotSize $shotSize \
                 --method $method \
-                --uncertaintyFile $home/data/Act-UIE/$dataset/$model-uncertainty-$UNshotSize-$UNresponseSize.json \
+                --uncertaintyFile $home/data/APIE/$dataset/$model-uncertainty-$UNshotSize-$UNresponseSize.json \
                 --frontArgs 0.05 \
                 --alpha $alpha \
                 --beta $beta \
@@ -42,7 +44,7 @@ for dataset in $datasets; do
             python evaluation.py \
                 --inputFile $home/output/$dataset/$model/$method-$today.json \
                 --outputFile $home/output/$dataset/$model/$method-$today.json \
-                --schema $home/data/Act-UIE/$dataset/schema.json \
+                --schema $home/data/APIE/$dataset/schema.json \
                 --shotSize $shotSize \
                 --recordFile $home/output/$dataset/$model/$method-record.json \
                 --uncertaintyFile $home/output/$today/$dataset/$model-uncertainty-$UNshotSize-$UNresponseSize.json \

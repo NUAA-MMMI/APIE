@@ -1,12 +1,20 @@
 #!/bin/bash
 
-datasets=("ace04NER conll2004 SciERC")
-models=("qwen2.5:14b")
+# This script is used to calculate the uncertainty of the model's predictions on the test set of the specified dataset.
+
+# datasets name
+datasets=("CoNLL03")
+# models name
+models=("deepseek-chat")
+# number of shots and responses for uncertainty calculation
 shotSize=2
 responseSize=5
 
-home="/home/zd/work/Act-UIE"
-client="ollama"
+# change is path according to your local environment
+home="/home/zd/work/APIE"
+# client is used to specify the API client for uncertainty calculation, which is "deepseek-api" in this case. You can change it to other clients if needed,such as "ollama" in "uncertainty.py".
+client="deepseek-api"
+
 
 for dataset in $datasets; do
     for model in $models; do
@@ -15,12 +23,12 @@ for dataset in $datasets; do
         python uncertainty.py \
             --model $model \
             --client $client \
-            --inputFile $home/data/Act-UIE/$dataset/test.json \
-            --schema $home/data/Act-UIE/$dataset/schema.json \
+            --inputFile $home/data/APIE/$dataset/test.json \
+            --schema $home/data/APIE/$dataset/schema.json \
             --shotSize $shotSize \
             --responseSize $responseSize \
             --pollSize -1 \
-            --uncertaintyFile /home/zd/work/Act-UIE/data/Act-UIE/$dataset/$model-uncertainty-$shotSize-$responseSize.json\
+            --uncertaintyFile $home/data/APIE/$dataset/$model-uncertainty-$shotSize-$responseSize.json\
             --method ActUIE
     done
 done
