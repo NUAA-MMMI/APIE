@@ -1,11 +1,12 @@
 # APIE
 
 <p align="center">
+  <a href="https://ojs.aaai.org/index.php/AAAI/article/view/40796">📘AAAI</a> 
   <a href="https://arxiv.org/abs/2508.10036">📄arXiv</a> 
 </p>
 
 This repository provides the official implementation of the following paper:
-> [**Reflect then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion**](https://arxiv.org/abs/2508.10036) <br>
+> [**Reflect then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion**](https://ojs.aaai.org/index.php/AAAI/article/view/40796) <br>
 > Dong Zhao<sup>1*</sup>,
 > Yadong Wang<sup>1*</sup>,
 > Xiang Chen<sup>1†</sup>,

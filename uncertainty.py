@@ -25,7 +25,7 @@ if __name__ == "__main__":
     elif argsDict['client'] == "deepseek-api":
         # deepseek api client
         #! Note: Replace the API key with your actual DeepSeek API key
-        client = OpenAI(api_key="sk-5cec141448304a66a835cffa12aabe32", base_url="https://api.deepseek.com")
+        client = OpenAI(api_key="", base_url="https://api.deepseek.com")
     model = ModelAdaptor(model = argsDict['model'], client = client)
 
     #* Initialize logger
