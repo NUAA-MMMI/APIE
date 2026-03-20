@@ -41,6 +41,9 @@ if __name__ == "__main__":
     if argsDict['pollSize'] == -2:
         argsDict['pollSize'] = len(dataList)//10
 
+    if not os.path.exists(os.path.join(os.path.dirname(argsDict['outputFile']))):
+        os.makedirs(os.path.join(os.path.dirname(argsDict['outputFile'])), exist_ok=True)
+
     dataList = random.sample(dataList,argsDict['pollSize'])
     with open(os.path.join(argsDict['schema']), "r") as f:
         schema = json.loads(f.read())

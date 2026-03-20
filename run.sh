@@ -9,7 +9,7 @@ models=("deepseek-chat") # gemma3:14b
 home="/home/zd/work/APIE"
 
 today=$(date "+%m-%d-%H")
-client="ollama"  # Example client, modify as needed
+client="deepseek-api"  # Example client, modify as needed
 
 UNshotSize=2
 UNresponseSize=3

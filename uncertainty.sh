@@ -8,7 +8,7 @@ datasets=("CoNLL03")
 models=("deepseek-chat")
 # number of shots and responses for uncertainty calculation
 shotSize=2
-responseSize=5
+responseSize=3
 
 # change is path according to your local environment
 home="/home/zd/work/APIE"
@@ -27,7 +27,7 @@ for dataset in $datasets; do
             --schema $home/data/APIE/$dataset/schema.json \
             --shotSize $shotSize \
             --responseSize $responseSize \
-            --pollSize -1 \
+            --pollSize -2 \
             --uncertaintyFile $home/data/APIE/$dataset/$model-uncertainty-$shotSize-$responseSize.json\
             --method ActUIE
     done
