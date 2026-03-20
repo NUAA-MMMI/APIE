@@ -113,25 +113,16 @@ We use openai format client(local models or cloud models), you can change client
   Perform uncertainty assessment on the model
 
   ```
-  python uncertainty.py
+  bash uncertainty.sh
   ```
 
   Details see [uncertainty.py](uncertainty.py)
 
-### Inference
+### Inference and Evaluation
   Use the data that has undergone uncertainty assessment as cues for reasoning.
 
   ```
-  python interfence.py
+  bash run.sh
   ```
 
-  Details see [inference.py](inference.py)
-
-### Evaluation
-  The result of the evaluation and reasoning
-
-  ```
-  python evaluation.py
-  ```
-
-  Details see [evaluation.py](evaluation.py)
+  Details see [inference.py](inference.py) and [evaluation.py](evaluation.py)
